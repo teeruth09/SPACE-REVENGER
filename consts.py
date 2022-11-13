@@ -1,0 +1,9 @@
+WIDTH,HEIGHT = 600,700
+
+#color 
+BLACK = (255,255,255)
+RED = (250,5,5)
+GREEN = (5,250,5)
+
+BLUE = (0,255,255)
+DARKBLUE = (0,0,255)
