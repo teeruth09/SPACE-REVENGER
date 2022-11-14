@@ -5,6 +5,7 @@ from item import Item
 from ship import Ship
 from consts import WIDTH, HEIGHT, RED, GREEN,BLUE,DARKBLUE
 
+
 #sound
 from pygame import mixer
 pygame.mixer.pre_init(44100,-16,2,512)
@@ -66,10 +67,8 @@ class Player(Ship):
                             if obj.__class__.__name__ == 'Boss':
                                 ##scoreplayer ++ when Boss died
                                 self.Playerscore +=30
-                                
                                 if laser in self.lasers:
                                     self.lasers.remove(laser) 
-
                                 pass
                                 break
                             #scoreplayer ++ when enemy died
