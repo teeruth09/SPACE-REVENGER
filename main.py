@@ -197,7 +197,7 @@ def game():
             if random.randrange(0, 2 * 60) == 1:
                 enemy.shoot()
 
-            if collide(enemy, player):                 #overlap player กับ enemy
+            if collide(enemy, player):                 #overlap player and enemy
                 player.health -= 5
                 if player_score != 0:
                     player_score  -= 10
@@ -315,12 +315,10 @@ def updatescore():
         
         #Name
             NAME_TEXT = get_font(45).render(score[0], True, "White")
-           # NAME_RECT = NAME_TEXT.get_rect(200, 200+(i*50))
             WIN.blit(NAME_TEXT, (100,150+ i*50))
 
         #Score
             SCORE_TEXT = get_font(45).render(str(score[1]), True, "White")
-           # SCORE_RECT = SCORE_TEXT.get_rect(center=(400, 200+(i*50)))
             WIN.blit(SCORE_TEXT, (400,150+ i*50))
 
         UPDATESCORE_BACK = Button(image=None, pos=(300, 600), 
@@ -476,7 +474,7 @@ def main_menu():
 
         WIN.blit(MENU_TEXT, MENU_RECT)
 
-        #Teeruth 650104953
+        #Teeruth 65010495
         NAME_TEXT = get_font(25).render("Teeruth Ieowsakulrat 65010495", True, "Orange")
         NAME_RECT = NAME_TEXT.get_rect(center=(400, 670))
 
