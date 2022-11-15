@@ -5,17 +5,17 @@ import os
 from consts import WIDTH,HEIGHT, RED, GREEN,BLUE,DARKBLUE
 
 # Load images
-RED_SPACE_SHIP = pygame.transform.scale(pygame.image.load("Textures/en2.png"),(60,60))
-GREEN_SPACE_SHIP = pygame.transform.scale(pygame.image.load("Textures/en1.png"),(70,70))
-BLUE_SPACE_SHIP = pygame.transform.scale(pygame.image.load("Textures/en3.png"),(70,70))
-BOSS_SHIP = pygame.transform.scale(pygame.image.load("Textures/Boss.png"),(90,90))
+RED_SPACE_SHIP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/en2.png"),(60,60))
+GREEN_SPACE_SHIP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/en1.png"),(70,70))
+BLUE_SPACE_SHIP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/en3.png"),(70,70))
+BOSS_SHIP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/Boss.png"),(90,90))
 
 
 # Lasers
-RED_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Textures/redbullet.png"),(30,30)),180)
-GREEN_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Textures/greenbullet.png"),(30,30)),180)
-BLUE_LASER = pygame.transform.rotate(pygame.image.load("Textures/Bullet.png"),-90)
-BOSS_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Textures/pow.png"),(80,80)),-90)
+RED_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("SourceCode/Textures/redbullet.png"),(30,30)),180)
+GREEN_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("SourceCode/Textures/greenbullet.png"),(30,30)),180)
+BLUE_LASER = pygame.transform.rotate(pygame.image.load("SourceCode/Textures/Bullet.png"),-90)
+BOSS_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("SourceCode/Textures/pow.png"),(80,80)),-90)
 
 
 class Enemy(Ship):
