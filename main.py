@@ -24,13 +24,13 @@ pygame.mixer.pre_init(44100,-16,2,512)
 mixer.init()
 
 #Load sounds
-Gameover_fx = pygame.mixer.Sound("SoundEffect/GameoverSound.wav")
+Gameover_fx = pygame.mixer.Sound("SourceCode/SoundEffect/GameoverSound.wav")
 Gameover_fx.set_volume(0.50)
 
-GetItem_fx = pygame.mixer.Sound("SoundEffect/Get_Item.wav")
+GetItem_fx = pygame.mixer.Sound("SourceCode/SoundEffect/Get_Item.wav")
 GetItem_fx.set_volume(0.20)
 
-MouseClick_fx = pygame.mixer.Sound("SoundEffect/ClickMouse.mp3")
+MouseClick_fx = pygame.mixer.Sound("SourceCode/SoundEffect/ClickMouse.mp3")
 MouseClick_fx.set_volume(0.50)
 #end
 
@@ -45,17 +45,17 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("SPACE REVENGER")
 
 #Background
-BG =pygame.transform.scale(pygame.image.load("Map/map.jpg"),(WIDTH,HEIGHT))
+BG =pygame.transform.scale(pygame.image.load("SourceCode/Map/map.jpg"),(WIDTH,HEIGHT))
 
 #Cutscene
-CUTSCENE_1 = pygame.transform.scale(pygame.image.load("Cutscene/Cover.png"),(WIDTH,HEIGHT))
-CUTSCENE_2 = pygame.transform.scale(pygame.image.load("Cutscene/ENEMY.png"),(WIDTH,HEIGHT))
-CUTSCENE_3 = pygame.transform.scale(pygame.image.load("Cutscene/BOSS.png"),(WIDTH,HEIGHT))
-CUTSCENE_4 = pygame.transform.scale(pygame.image.load("Cutscene/Item.png"),(WIDTH,HEIGHT))
-CUTSCENE_5 = pygame.transform.scale(pygame.image.load("Cutscene/Cover.png"),(WIDTH,HEIGHT))
+CUTSCENE_1 = pygame.transform.scale(pygame.image.load("SourceCode/Cutscene/Cover.png"),(WIDTH,HEIGHT))
+CUTSCENE_2 = pygame.transform.scale(pygame.image.load("SourceCode/Cutscene/ENEMY.png"),(WIDTH,HEIGHT))
+CUTSCENE_3 = pygame.transform.scale(pygame.image.load("SourceCode/Cutscene/BOSS.png"),(WIDTH,HEIGHT))
+CUTSCENE_4 = pygame.transform.scale(pygame.image.load("SourceCode/Cutscene/Item.png"),(WIDTH,HEIGHT))
+CUTSCENE_5 = pygame.transform.scale(pygame.image.load("SourceCode/Cutscene/Cover.png"),(WIDTH,HEIGHT))
 
 #Endscene
-ENDSCENE_BG = pygame.transform.scale(pygame.image.load("Map/EndsceneBG.png"),(WIDTH,HEIGHT))
+ENDSCENE_BG = pygame.transform.scale(pygame.image.load("SourceCode/Map/EndsceneBG.png"),(WIDTH,HEIGHT))
 
 #Playerscore        
 playername = ''
@@ -77,7 +77,7 @@ def game():
     lives = 15
 
     enemies = []
-    items = []                       
+    healitems = []                       
     powerUp = []
     liveUp = []
 
@@ -106,8 +106,8 @@ def game():
         for en in enemies:
             en.draw(WIN)
         #heal item         
-        for item in items:
-            item.draw(WIN)
+        for healitem in healitems:
+            healitem.draw(WIN)
         #power item                                    
         for power_item in powerUp:
             power_item.draw(WIN)
@@ -126,7 +126,7 @@ def game():
         player_score +=  player.Playerscore
         player.Playerscore = 0
        
-        if lives <= 0 or player.health <= 0 or level == 8:
+        if lives <= 0 or player.health <= 0:
             scoreName(player_score)
             updatescore()
     
@@ -141,8 +141,8 @@ def game():
                     endScene()
                     
                 #heal item
-                item = Item(random.randrange(0, WIDTH - 50), random.randrange(-800 + level * 100, -50))
-                items.append(item)
+                healitem = Item(random.randrange(0, WIDTH - 50), random.randrange(-800 + level * 100, -50))
+                healitems.append(healitem)
                 #power item
                 power_item = PowerUp(random.randrange(0, WIDTH - 50), random.randrange(-800 + level * 100, -50))
                 powerUp.append(power_item)
@@ -202,7 +202,7 @@ def game():
                 if player_score != 0:
                     player_score  -= 10
                 enemies.remove(enemy)
-            elif enemy.y + enemy.get_height() > HEIGHT:             #enemy out of screen
+            elif enemy.y > HEIGHT:             #enemy out of screen
                 lives -= 1
                 
                 if player_score != 0:
@@ -212,12 +212,12 @@ def game():
         player.move_lasers(-laser_vel, enemies)
 
         #heal item
-        for item in items[:]:
-            if collide(item,player):
+        for healitem in healitems[:]:
+            if collide(healitem,player):
                 GetItem_fx.play()
                 if player.health !=100 :
                     player.health += 10
-                items.remove(item) 
+                healitems.remove(healitem) 
         #power item
         for power_item in powerUp[:]:
             if collide(power_item,player):
@@ -314,11 +314,11 @@ def updatescore():
         for i,score in enumerate(playerScore):
         
         #Name
-            NAME_TEXT = get_font(45).render(score[0], True, "White")
+            NAME_TEXT = get_font(45).render(score[0], True, "White")          #[0] =playername         
             WIN.blit(NAME_TEXT, (100,150+ i*50))
 
         #Score
-            SCORE_TEXT = get_font(45).render(str(score[1]), True, "White")
+            SCORE_TEXT = get_font(45).render(str(score[1]), True, "White")    #[1]= int(player_score)
             WIN.blit(SCORE_TEXT, (400,150+ i*50))
 
         UPDATESCORE_BACK = Button(image=None, pos=(300, 600), 
@@ -465,11 +465,11 @@ def main_menu():
         MENU_TEXT = get_font(65).render("SPACE REVENGER", True, "#FFD700")
         MENU_RECT = MENU_TEXT.get_rect(center=(300, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("Menu/Play_Rect.png"), pos=(300, 250), 
+        PLAY_BUTTON = Button(image=pygame.image.load("SourceCode/Menu/Play_Rect.png"), pos=(300, 250), 
                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        SCORE_BUTTON = Button(image=pygame.image.load("Menu/Play_Rect.png"), pos=(300, 400), 
+        SCORE_BUTTON = Button(image=pygame.image.load("SourceCode/Menu/Play_Rect.png"), pos=(300, 400), 
                             text_input="SCORE", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("Menu/Play_Rect.png"), pos=(300, 550), 
+        QUIT_BUTTON = Button(image=pygame.image.load("SourceCode/Menu/Play_Rect.png"), pos=(300, 550), 
                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         WIN.blit(MENU_TEXT, MENU_RECT)
