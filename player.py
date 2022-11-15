@@ -12,14 +12,14 @@ pygame.mixer.pre_init(44100,-16,2,512)
 mixer.init()
 
 #Load SpaceShip
-PLAYER_SPACE_SHIP = pygame.transform.scale(pygame.image.load("Textures/ship2.png"),(70,70))
-PLAYER_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("Textures/pow.png"),(30,30)),90)
+PLAYER_SPACE_SHIP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/ship2.png"),(70,70))
+PLAYER_LASER = pygame.transform.rotate(pygame.transform.scale(pygame.image.load("SourceCode/Textures/pow.png"),(30,30)),90)
 
 #Load sounds
-laser_fx = pygame.mixer.Sound("SoundEffect/laser.wav")
+laser_fx = pygame.mixer.Sound("SourceCode/SoundEffect/laser.wav")
 laser_fx.set_volume(0.10)
 
-explosion_fx = pygame.mixer.Sound("SoundEffect/explosion.wav")
+explosion_fx = pygame.mixer.Sound("SourceCode/SoundEffect/explosion.wav")
 explosion_fx.set_volume(0.10)
 
 class Player(Ship):
