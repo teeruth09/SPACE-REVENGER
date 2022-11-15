@@ -8,10 +8,10 @@ import random
 from utils import collide
 
 # Load images
-MED_KIT = pygame.transform.scale(pygame.image.load("Textures/heal.png"),(20,20))
-POWER_UP = pygame.transform.scale(pygame.image.load("Textures/itemSpeed.png"),(20,20))
+MED_KIT = pygame.transform.scale(pygame.image.load("SourceCode/Textures/heal.png"),(20,20))
+POWER_UP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/itemSpeed.png"),(20,20))
 
-LIVE_UP = pygame.transform.scale(pygame.image.load("Textures/hpitem.png"),(20,20))
+LIVE_UP = pygame.transform.scale(pygame.image.load("SourceCode/Textures/hpitem.png"),(20,20))
 
 class Item:
     ITEM_MAP = {
