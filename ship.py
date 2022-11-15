@@ -1,4 +1,4 @@
-from laser import Laser
+rom laser import Laser
 from consts import HEIGHT
 
 
